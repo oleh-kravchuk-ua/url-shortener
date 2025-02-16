@@ -1,0 +1,21 @@
+.url-shortener {
+  max-width: 600px;
+  margin: auto;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 50px 100px;
+}
+
+.help {
+  font-size: 12px;
+  margin-top: 16px;
+  color: #666;
+}

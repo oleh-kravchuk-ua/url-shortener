@@ -1,0 +1,32 @@
+networks:
+  net_link:
+    name: url-shortener-network
+    driver: bridge
+
+services:
+  web:
+    build:
+      context: ../../
+      dockerfile: apps/web/Dockerfile
+    image: url-shortener/web
+    container_name: url-shortener-web
+    networks:
+      - net_link
+    hostname: ${WEB_HOSTNAME:-url-shortener-web}
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - PORT=${WEB_PORT:-3000}
+      - REACT_APP_API_HOST=${REACT_APP_API_HOST:-http://localhost:3300/api}
+    ports:
+      - ${WEB_HOST_PORT:-3030}:${WEB_PORT:-3000}
+    volumes:
+      - ./bin/entrypoint.sh:/docker-entrypoint/entrypoint.sh:ro
+      - ./src:/app/src
+      - ./public:/app/public
+      - frontend_build:/app/build
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  frontend_build:

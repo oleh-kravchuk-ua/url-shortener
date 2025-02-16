@@ -1,0 +1,8 @@
+{
+  "extends": ["../../biome.base.json"],
+  "files": {
+		"ignoreUnknown": false,
+		"include": ["src"],
+		"ignore": ["build", "node_modules"]
+	}
+}

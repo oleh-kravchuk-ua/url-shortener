@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "name": "@url-shortener/web",
+  "version": "1.0.0",
+  "description": "Frontend APP for URL-shortener",
+  "engines": {
+    "node": ">=23.6.0"
+  },
+  "scripts": {
+    "lint": "biome check src",
+    "lint:fix": "npm run lint -- --write",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "docker:up:prod": "pnpm install && docker-compose  -f ./docker-compose.prod.yml up --build",
+    "docker:up": "pnpm install && docker-compose  -f ./docker-compose.dev.yml up --build",
+    "docker:down": "docker-compose down",
+    "docker:ls": "docker ps -a",
+    "docker:lsi": "docker images",
+    "docker:stop": "docker ps -aq | xargs docker stop -t 1",
+    "docker:rm": "docker ps -aq | xargs docker rm",
+    "docker:rmi": "docker images -q | xargs docker rmi",
+    "docker:cleanup": "npm run docker:stop && npm run docker:rm",
+    "docker:purge": "npm run docker:cleanup && npm run docker:rmi"
+  },
+  "readmeFilename": "SEE README IN ./README.md",
+  "author": {
+    "name": "Oleh Kravchuk",
+    "email": "oleh.kravchuk.ua@gmail.com",
+    "url": "https://github.com/oleh-kravchuk-ua"
+  },
+  "dependencies": {
+    "react": "18.3.1 ",
+    "react-dom": "18.3.1 ",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^7.1.5"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/react-dom": "18.3.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.7.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
