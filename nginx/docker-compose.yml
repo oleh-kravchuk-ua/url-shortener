@@ -1,0 +1,60 @@
+networks:
+  net_link:
+    name: url-shortener-network
+    driver: bridge
+
+services:
+  certs:
+    image: url-shortener/ssl
+    container_name: url-shortener-ssl
+    build:
+      context: ./certs
+    environment:
+      - SSL_DAYS=${NGINX_SSL_DAYS:-365}
+      - SSL_SUBJECT=${NGINX_SSL_SUBJECT:-/CN=localhost}
+      - SSL_FILE_KEY=${NGINX_SSL_FILE_KEY:-files/tls.key}
+      - SSL_FILE_CERT=${NGINX_SSL_FILE_CERT:-files/tls.crt}
+    volumes:
+      - "./certs/files:/certs/files"
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: url-shortener-nginx
+    networks:
+      - net_link
+    hostname: ${NGINX_HOSTNAME:-url-shortener-nginx}
+    ports:
+      - 443:443
+      - 80:80
+    environment:
+      - API_HOSTNAME=${API_HOSTNAME:-url-shortener-api}
+      - API_PORT=${API_PORT:-3000}
+      - SSL_FILE_KEY=${NGINX_SSL_FILE_KEY:-files/tls.key}
+      - SSL_FILE_CERT=${NGINX_SSL_FILE_CERT:-files/tls.crt}
+    volumes:
+      - ./bin/entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh:ro
+      - ./bin/healthcheck.sh:/usr/local/bin/healthcheck.sh:ro
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/conf.d:/etc/nginx/conf.d
+      - ./certs/files:/etc/nginx/ssl/files:ro
+      - frontend_build:/usr/share/nginx/html
+    entrypoint: ["/docker-entrypoint.d/nginx-entrypoint.sh"]
+    command: ["nginx", "-g", "daemon off;"]
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh"]
+      interval: 10s       # Check frequently
+      timeout: 3s         # Quick timeout for ping
+      start_period: 15s   # Initial delay
+      start_interval: 5s  # Quick checks during startup
+      retries: 5          # Few retries for quick failure detection
+    depends_on:
+      certs:
+        condition: service_completed_successfully
+      web:
+        condition: service_completed_successfully
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  frontend_build:

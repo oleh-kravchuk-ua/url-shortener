@@ -1,0 +1,36 @@
+upstream api_servers {
+  server ${API_HOSTNAME}:${API_PORT};
+}
+
+server {
+  listen 443 ssl;
+  server_name localhost;
+
+  # SSL configuration
+  include /etc/nginx/conf.d/ssl.conf;
+
+  # Proxy configuration
+  include /etc/nginx/conf.d/proxy.conf;
+
+  root /usr/share/nginx/html;
+
+  location / {
+    index index.html index.htm;
+    try_files $uri $uri/ /index.html;
+  }
+
+  location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff|woff2|svg|ttf|eot)$ {
+    expires 30d;
+    access_log off;
+  }
+
+  location ~* ^/(api|healthcheck) {
+    proxy_pass http://api_servers;
+  }
+}
+
+server {
+  listen 80;
+  server_name localhost;
+  return 301 https://$host$request_uri;
+}
