@@ -1,0 +1,64 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "include": [
+    "src/**/*"
+  ],
+  "compilerOptions": {
+    "noEmit": false,
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "types": [
+      "node"
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "$/*": [
+        "./src/*"
+      ],
+      "$infra/*": [
+        "./src/infra/*"
+      ],
+      "$api/*": [
+        "./src/api/*"
+      ],
+      "$app/*": [
+        "./src/app/*"
+      ],
+      "$domain/*": [
+        "./src/domain/*"
+      ],
+      "$logger": [
+        "src/infra/logger/index.ts"
+      ],
+      "$config/*": [
+        "./src/infra/config/*"
+      ],
+      "$helper/*": [
+        "./src/infra/helpers/*"
+      ],
+      "$controller/*": [
+        "./src/api/controllers/*"
+      ],
+      "$usecase/*": [
+        "./src/app/usecases/*"
+      ],
+      "$service/*": [
+        "./src/domain/services/*"
+      ],
+      "$entity/*": [
+        "./src/domain/entities/*"
+      ],
+      "$repo/*": [
+        "./src/domain/repos/*"
+      ]
+    }
+  }
+}
