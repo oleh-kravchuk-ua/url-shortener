@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+**/Dockerfile
+**/docker-compose.yml
+.git
+.gitignore
+.dockerignore
+curl-example.md
+**/README.md
+biome.json
+infra/certs/*
+!infra/certs/files

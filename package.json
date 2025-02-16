@@ -1,0 +1,62 @@
+{
+  "private": true,
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "Allow users to create short versions of links to make them easier to speak and share",
+  "keywords": [
+    "url",
+    "link",
+    "slug",
+    "short",
+    "shortlink",
+    "shorturl",
+    "shortener"
+  ],
+  "engines": {
+    "node": ">=23.6.0"
+  },
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "prepare": "sh ./prepare.sh",
+    "type-check": "npm run type-check --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
+    "docker:up:prod": "NODE_ENV=prd WEB_PUBLIC_HOST=\"https://localhost\" docker-compose -f ./docker-compose.prod.yml up",
+    "docker:up": "docker-compose -f ./docker-compose.dev.yml up --build",
+    "docker:down": "docker-compose down",
+    "docker:ls": "docker ps -a",
+    "docker:lsi": "docker images",
+    "docker:stop": "docker ps -aq | xargs docker stop -t 1",
+    "docker:cleanup": "npm run docker:stop && npm run docker:rm",
+    "docker:rm": "docker ps -aq | xargs docker rm",
+    "docker:rmi": "docker images -q | xargs docker rmi",
+    "docker:purge": "npm run docker:cleanup && npm run docker:rmi"
+  },
+  "homepage": "https://github.com/oleh-kravchuk-ua/url-shortener#readme",
+  "readmeFilename": "SEE README IN ./README.md",
+  "license": "SEE LICENSE IN ./LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/oleh-kravchuk-ua/url-shortener.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oleh-kravchuk-ua/url-shortener/issues"
+  },
+  "author": {
+    "name": "Oleh Kravchuk",
+    "email": "oleh.kravchuk.ua@gmail.com",
+    "url": "https://github.com/oleh-kravchuk-ua"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@vitest/coverage-v8": "^3.0.5",
+    "husky": "^9.1.7",
+    "vitest": "^3.0.5"
+  }
+}
