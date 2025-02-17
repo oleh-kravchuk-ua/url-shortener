@@ -32,6 +32,7 @@ A simple and efficient URL Shortener application that allows users to create sho
 
 ## Technology Stack
 
+- **Project** Is a monorepo managed by NPM workspaces
 - **Frontend:** React with TypeScript
 - **Backend:** Node.js with TypeScript, DDD and inversify, express, micro-orm
 - **Database:** MongoDB
@@ -60,7 +61,7 @@ A simple and efficient URL Shortener application that allows users to create sho
 
     Access the application at `http://localhost:3000`
 
-4. [PROD env] Build and run the application using Docker:
+4. Or [PROD env] Build and run the application using Docker:
 
     ```sh
     npm run docker:up:prod

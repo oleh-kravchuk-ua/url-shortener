@@ -14,6 +14,8 @@ Install pnpm local deps
 pnpm i
 ```
 
+Some help with bebug od Docker containers
+
 ```sh
 docker network inspect url-shortener-network
 
@@ -24,7 +26,8 @@ docker-compose exec nginx nslookup url-shortener-api
 docker logs url-shortener-web
 
 docker exec -it url-shortener-nginx sh
-curl -fk https://localhost:${WEB_PORT}
+curl -fk https://localhost
+
 ```
 
 ## Jump into DB
