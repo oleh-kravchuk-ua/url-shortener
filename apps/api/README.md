@@ -32,3 +32,25 @@ curl -fk https://localhost:${WEB_PORT}
 ```sh
 docker exec -it url-shortener-db mongosh url-shortener
 ```
+
+## Example of URL records in Mongo DB
+
+  ```mongosh
+  use url-shortener
+
+  # db.urls.find();
+
+  db.urls.findOne({ "_id": ObjectId('67afd53c3794c93e622458b6') });
+  {
+    _id: ObjectId('67afd53c3794c93e622458b6'),
+    createdAt: ISODate('2025-02-14T23:43:56.593Z'),
+    deleted: false,
+    originalUrl: 'https://www.linkedin.com/in/kolegm',
+    shortUrl: 'http://localhost:3000/875d5490',
+    domain: 'http://localhost:3000',
+    slug: '875d5490',
+    slugSize: 4,
+    visits: 6,
+    updatedAt: ISODate('2025-02-15T00:02:26.175Z')
+  }
+  ```
