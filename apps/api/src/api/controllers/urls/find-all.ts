@@ -4,7 +4,7 @@ import { ioc } from "$infra/ioc";
 import { orm } from "$infra/micro-orm";
 
 import { TOKEN_USECASE_FIND_ALL_URLS } from "$usecase/find-all-urls";
-import type { FindAllUrlsUsecase } from "$usecase/find-all-urls";
+import type { IFindAllUrlsUsecase } from "$usecase/find-all-urls";
 
 import { /*mapDataToResponse, */ mapErrorToResponse } from "$api/responses/urls";
 
@@ -15,7 +15,7 @@ const logger = createLogger({ prefix: "[Logger_controller_findAll]" });
 
 export const findAll: RequestHandler = async (_req, res) => {
   const em = orm.em.fork();
-  const usecaseFindAllUrls = ioc.get<FindAllUrlsUsecase>(TOKEN_USECASE_FIND_ALL_URLS);
+  const usecaseFindAllUrls = ioc.get<IFindAllUrlsUsecase>(TOKEN_USECASE_FIND_ALL_URLS);
 
   try {
     const { result } = await usecaseFindAllUrls.execute(em);

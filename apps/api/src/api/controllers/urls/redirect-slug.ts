@@ -6,7 +6,7 @@ import { runInTransaction } from "$helper/run-in-tx";
 import { getUsecaseOperation } from "$usecase/get-usecase";
 
 import { RedirectBySlugValidationKey, TOKEN_USECASE_REDIRECT_BY_SLUG } from "$usecase/redirect-by-slug";
-import type { InputData, OutputData, RedirectBySlugUsecase } from "$usecase/redirect-by-slug";
+import type { InputData, OutputData, IRedirectBySlugUsecase } from "$usecase/redirect-by-slug";
 
 import { mapDataToResponse, mapErrorToResponse } from "$api/responses/urls";
 
@@ -33,7 +33,7 @@ const checkValidationKey = (output: OutputData): void => {
 
 export const redirectBySlug: RequestHandler = async (req, res) => {
   const { slug } = matchedData(req);
-  const operation = getUsecaseOperation<RedirectBySlugUsecase>(TOKEN_USECASE_REDIRECT_BY_SLUG);
+  const operation = getUsecaseOperation<IRedirectBySlugUsecase>(TOKEN_USECASE_REDIRECT_BY_SLUG);
 
   try {
     const output = await runInTransaction<InputData, OutputData>(operation, { slug });

@@ -7,7 +7,7 @@
     "node": ">=23.6.0"
   },
   "main": "index.js",
-  "types": "dist/types/index.d.js",
+  "types": "dist/index.d.js",
   "scripts": {
     "precompile": "rimraf dist",
     "compile": "tsc && tsc-alias",

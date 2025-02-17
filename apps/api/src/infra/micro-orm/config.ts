@@ -32,6 +32,7 @@ const pool = { min: 2, max: 10 };
 //   tableName: "mikro_orm_migrations",
 //   path: "dist/migrations",
 //   pathTs: "src/migrations",
+//   ...(isProduction ? null : { pathTs: "src/migrations" }),
 //   glob: "!(*.d).{js,ts}", // how to match migration files (all .js and .ts files, but not .d.ts)
 //   transactional: true, // run each migration inside transaction
 //   //disableForeignKeys: true, // try to disable foreign_key_checks (or equivalent)
@@ -48,15 +49,14 @@ const options: MongoOptions = {
   name: "mongo",
   //entities: [BaseEntity, UrlEntity, UserEntity],
   entities: ["dist/domain/entities/*.entity.js"],
-  entitiesTs: ["src/domain/entities/*.entity.ts"],
+  ...(isProduction ? null : { entitiesTs: ["src/domain/entities/*.entity.ts"] }),
   metadataProvider: TsMorphMetadataProvider,
   clientUrl: MONGODB_URL,
   pool,
   logger: (message: string) => logger.info(message),
+  metadataCache: { enabled: false, pretty: true },
   //extensions: [Migrator],
   //migrations,
-  verbose: true,
-  //metadataCache: { enabled: false, pretty: true },
 };
 
 export default defineConfig(options);

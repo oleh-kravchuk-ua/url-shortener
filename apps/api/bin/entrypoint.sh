@@ -8,7 +8,7 @@ NODE_ENV=${NODE_ENV:-prd}
 echo "Backend APP starting in $NODE_ENV mode ..."
 
 if [ "$NODE_ENV" = "prd" ] || [ "$NODE_ENV" = "prod" ] || [ "$NODE_ENV" = "production" ]; then
-  npm run start:watch
+  npm run start
 else
   npm run start:watch
 fi

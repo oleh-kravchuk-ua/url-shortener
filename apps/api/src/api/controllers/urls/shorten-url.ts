@@ -6,7 +6,7 @@ import { runInTransaction } from "$helper/run-in-tx";
 import { getUsecaseOperation } from "$usecase/get-usecase";
 
 import { GenerateShortUrlValidationKey, TOKEN_USECASE_GENERATE_SHORT_URL } from "$usecase/genereate-short-url";
-import type { GenerateShortUrlUsecase, InputData, OutputData } from "$usecase/genereate-short-url";
+import type { IGenerateShortUrlUsecase, InputData, OutputData } from "$usecase/genereate-short-url";
 
 import { mapDataToResponse, mapErrorToResponse } from "$api/responses/urls";
 
@@ -27,7 +27,7 @@ const checkValidationKey = (output: OutputData): void => {
 
 export const shortenUrl: RequestHandler = async (req, res) => {
   const { originalUrl } = matchedData(req);
-  const operation = getUsecaseOperation<GenerateShortUrlUsecase>(TOKEN_USECASE_GENERATE_SHORT_URL);
+  const operation = getUsecaseOperation<IGenerateShortUrlUsecase>(TOKEN_USECASE_GENERATE_SHORT_URL);
 
   try {
     const output = await runInTransaction<InputData, OutputData>(operation, { originalUrl });
