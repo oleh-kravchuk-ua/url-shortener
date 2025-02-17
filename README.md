@@ -9,8 +9,9 @@ A simple and efficient URL Shortener application that allows users to create sho
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Extra Credit](#extra-credit)
+- [Linter and Tests](#linter-and-tests)
+- [Clean up containers](#clean-up-containers)
 
 ## Features
 
@@ -104,7 +105,7 @@ A simple and efficient URL Shortener application that allows users to create sho
     npm run type-check
     ```
 
-## Clean up
+## Clean up containers
 
 1. Stop the used docker containers
 
