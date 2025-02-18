@@ -3,12 +3,14 @@ import type { Server as HttpServer } from "node:http";
 
 import type { Express } from "express";
 
-import { PORT } from "$config/enviroment";
+import { PORT, isProduction } from "$config/enviroment";
 import { logger } from "$infra/logger";
 
 import { KEEP_ALIVE_TIMEOUT, options } from "./config";
 
 let httpServer: HttpServer | undefined;
+
+const metadata = { port: PORT, isProduction };
 
 export const startHttpServer = (app: Express): HttpServer => {
   const server = http.createServer(options, app);
@@ -17,11 +19,11 @@ export const startHttpServer = (app: Express): HttpServer => {
   try {
     httpServer = server.listen(PORT);
 
-    logger.info(`HTTP Server listening on port ${PORT}`);
+    logger.withMetadata(metadata).info("HTTP Server listening");
 
     return httpServer;
   } catch (error) {
-    logger.error("Failed to start HTTP-server");
+    logger.withMetadata(metadata).error("Failed to start HTTP-server");
     throw error;
   }
 };

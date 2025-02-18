@@ -13,7 +13,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "types": [
-      "node"
+      "node",
+      "reflect-metadata"
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

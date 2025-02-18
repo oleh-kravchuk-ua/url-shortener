@@ -26,18 +26,18 @@ import {
 } from "./find-all-urls";
 
 export const usecasesModule = new ContainerModule((bind: interfaces.Bind) => {
-  bind<IGenerateShortUrlUsecase>(TOKEN_USECASE_GENERATE_SHORT_URL).to(GenerateShortUrlUsecase).inTransientScope();
-  bind<ILogLayer>(TOKEN_LOGGER_FOR_USECASE_GENERATE_SHORT_URL)
-    .toDynamicValue(() => createLogger({ prefix: "[Logger_GenerateShortUrlUsecase]" }))
-    .inTransientScope();
+  bind<IGenerateShortUrlUsecase>(TOKEN_USECASE_GENERATE_SHORT_URL).to(GenerateShortUrlUsecase);
+  bind<ILogLayer>(TOKEN_LOGGER_FOR_USECASE_GENERATE_SHORT_URL).toDynamicValue(() =>
+    createLogger({ prefix: "[Logger_GenerateShortUrlUsecase]" }),
+  );
 
-  bind<IRedirectBySlugUsecase>(TOKEN_USECASE_REDIRECT_BY_SLUG).to(RedirectBySlugUsecase).inTransientScope();
-  bind<ILogLayer>(TOKEN_LOGGER_FOR_USECASE_REDIRECT_BY_SLUG)
-    .toDynamicValue(() => createLogger({ prefix: "[Logger_RedirectBySlugUsecase]" }))
-    .inTransientScope();
+  bind<IRedirectBySlugUsecase>(TOKEN_USECASE_REDIRECT_BY_SLUG).to(RedirectBySlugUsecase);
+  bind<ILogLayer>(TOKEN_LOGGER_FOR_USECASE_REDIRECT_BY_SLUG).toDynamicValue(() =>
+    createLogger({ prefix: "[Logger_RedirectBySlugUsecase]" }),
+  );
 
-  bind<IFindAllUrlsUsecase>(TOKEN_USECASE_FIND_ALL_URLS).to(FindAllUrlsUsecase).inTransientScope();
-  bind<ILogLayer>(TOKEN_LOGGER_FOR_USECASE_FIND_ALL_URLS)
-    .toDynamicValue(() => createLogger({ prefix: "[Logger_FindAllUrlsUsecase]" }))
-    .inTransientScope();
+  bind<IFindAllUrlsUsecase>(TOKEN_USECASE_FIND_ALL_URLS).to(FindAllUrlsUsecase);
+  bind<ILogLayer>(TOKEN_LOGGER_FOR_USECASE_FIND_ALL_URLS).toDynamicValue(() =>
+    createLogger({ prefix: "[Logger_FindAllUrlsUsecase]" }),
+  );
 });

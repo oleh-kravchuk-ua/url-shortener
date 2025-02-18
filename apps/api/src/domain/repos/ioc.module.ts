@@ -7,9 +7,7 @@ import { TOKEN_REPO_URL, UrlRepository } from "./url";
 import type { IUserRepository } from "./user";
 import { TOKEN_REPO_USER, UserRepository } from "./user";
 
-const reposModule = new ContainerModule((bind: interfaces.Bind) => {
+export const reposModule = new ContainerModule((bind: interfaces.Bind) => {
   bind<IUrlRepository>(TOKEN_REPO_URL).to(UrlRepository).inSingletonScope();
   bind<IUserRepository>(TOKEN_REPO_USER).to(UserRepository).inSingletonScope();
 });
-
-export { reposModule };

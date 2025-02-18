@@ -3,7 +3,7 @@
 ## Just a general endpoint calling
 
 ```curl
-curl http://localhost:3300 \
+curl http://localhost:3000 \
   -X GET \
   -H "Content-Type: application/json" \
   -w ", STATUS_CODE: %{http_code}\n" \

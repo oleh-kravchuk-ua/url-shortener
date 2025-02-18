@@ -61,7 +61,7 @@ A simple and efficient URL Shortener application that allows users to create sho
 
     Access the application at `http://localhost:3000`
 
-4. Or [PROD env - @todo: doesn't work currently] Build and run the application using Docker:
+4. Or [PROD env] Build and run the application using Docker:
 
     ```sh
     npm run docker:up:prod

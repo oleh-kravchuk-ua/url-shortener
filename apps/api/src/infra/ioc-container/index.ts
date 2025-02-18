@@ -1,10 +1,12 @@
-import { Container } from "inversify";
+import { BindingScopeEnum, Container } from "inversify";
 import type { interfaces } from "inversify";
 
 import { isProduction } from "$config/enviroment";
 import bindingLogger from "./logger";
 
 const options = {
+  autoBindInjectable: true, // Mandatory for PROD env
+  defaultScope: BindingScopeEnum.Transient,
   skipBaseClassChecks: true,
 };
 
