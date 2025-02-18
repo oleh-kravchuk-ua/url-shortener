@@ -7,7 +7,7 @@ import { isProduction } from "$config/enviroment";
 import { logger as mainLogger } from "$logger";
 
 interface ProcessEnv {
-  IOC_DEBUG?: string;
+  API_IOC_DEBUG?: string;
 }
 
 interface LoggerOutput<T> {
@@ -16,7 +16,7 @@ interface LoggerOutput<T> {
 
 const env = process.env as ProcessEnv;
 
-export const isIocDebug = env.IOC_DEBUG === "on";
+export const isIocDebug = env.API_IOC_DEBUG === "on";
 export const isDebugActivated = !isProduction && isIocDebug;
 
 const makeStringRenderer = (loggerOutput: LoggerOutput<string>) => (entry: interfaces.LogEntry) => {

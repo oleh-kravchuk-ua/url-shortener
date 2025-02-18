@@ -6,7 +6,7 @@ import { runInTransaction } from "$helper/run-in-tx";
 import { getUsecaseOperation } from "$usecase/get-usecase";
 
 import { RedirectBySlugValidationKey, TOKEN_USECASE_REDIRECT_BY_SLUG } from "$usecase/redirect-by-slug";
-import type { InputData, OutputData, IRedirectBySlugUsecase } from "$usecase/redirect-by-slug";
+import type { IRedirectBySlugUsecase, InputData, OutputData } from "$usecase/redirect-by-slug";
 
 import { mapDataToResponse, mapErrorToResponse } from "$api/responses/urls";
 
