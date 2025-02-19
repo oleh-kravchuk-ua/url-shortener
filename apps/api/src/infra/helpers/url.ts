@@ -1,3 +1,5 @@
+import { getContentByUrl } from "$infra/http/undici";
+
 export const toUrl = (url: string): URL | undefined => {
   try {
     return new URL(url);
@@ -18,7 +20,7 @@ export const isHttps = (url: string): boolean => {
 
 export const checkUrlValidity = async (url: string): Promise<boolean> => {
   try {
-    const response = await fetch(url, { method: "HEAD" });
+    const response = await getContentByUrl(url);
     return response.status >= 200 && response.status < 400;
   } catch (error) {
     return false;
