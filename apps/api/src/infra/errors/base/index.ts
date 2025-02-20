@@ -2,6 +2,8 @@ export enum ExceptionNames {
   InternalServer = "InternalServerException",
   Conflict = "ConflictException",
   BadRequest = "BadRequestException",
+  Timeout = "TimeoutException",
+  ExternalService = "ExternalServiceException",
 }
 
 export interface CustomError extends Error {

@@ -5,7 +5,7 @@ export default defineConfig({
     globals: true,
     environment: 'node', // "jsdom"
     include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    exclude: ['**/node_modules/**', '**/dist/**'],
+    exclude: ['**/node_modules/**', '**/dist/**', '**/coverage/**', '**/db-mongo/**', '**/bin/**'],
     coverage: {
       reporter: ['text', 'json', 'html'],
     },

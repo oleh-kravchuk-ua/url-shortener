@@ -8,7 +8,7 @@ export const repeatUntilAsync = async (
       try {
         await actionFn();
       } catch (error) {
-        errorHandler(error as Error);
+        return errorHandler(error as Error);
       }
     }
   } else {

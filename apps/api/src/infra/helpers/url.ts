@@ -12,11 +12,6 @@ export const isUrl = (url: string): boolean => {
   return !!toUrl(url);
 };
 
-export const isHttps = (url: string): boolean => {
-  const _url = toUrl(url);
-  return _url?.protocol === "https:";
-};
-
 export const checkUrlValidity = async (url: string): Promise<boolean> => {
   try {
     const response = await getContentByUrl(url);
