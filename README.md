@@ -2,6 +2,10 @@
 
 A simple and efficient URL Shortener application that allows users to create short versions of links, making them easier to share and communicate. For instance, transforming `https://some.place.example.com/foo/bar/biz` into `https://short.ly/abc123` simplifies the process, especially in situations like podcasts or print media.
 
+## Web view
+
+![Layout view](./layout.snapshot.png)
+
 ## Table of Contents
 
 - [Features](#features)
