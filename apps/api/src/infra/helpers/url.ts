@@ -12,7 +12,6 @@ export const isUrl = (url: string): boolean => {
   return !!toUrl(url);
 };
 
-// @deprecated Not used currently
 export const isHttps = (url: string): boolean => {
   const _url = toUrl(url);
   return _url?.protocol === "https:";
